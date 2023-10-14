@@ -1,82 +1,64 @@
 import { Document, Schema, model } from "mongoose";
 import uniqueValidator from "mongoose-unique-validator";
 
-export type IContactType = "home" | "work" | "mobile";
-
-export interface IContactTypeValue {
-  type: IContactType;
-  value: string;
+export interface IContactRequestBody {
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  email?: string;
+  birthday?: string;
+  address?: string;
+  company?: string;
+  jobTitle?: string;
+  notes?: string;
 }
 
-export interface IContactAddressType {
-  type: "home" | "work";
-  value: string;
+export interface IContactEncrypted {
+  _id?: string;
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  email?: string;
+  birthday?: string;
+  address?: string;
+  secretKey?: string;
+  company?: string;
+  jobTitle?: string;
+  notes?: string;
 }
 
 export interface IContact {
   firstName: string;
   lastName: string;
-  phoneNumber: IContactTypeValue[];
-  email: IContactTypeValue[];
-  notes: string;
+  phoneNumber: string;
+  email: string;
   birthday: string;
-  address: IContactAddressType[];
-  company: string;
-  jobTitle: string;
+  address: string;
+  company?: string;
+  jobTitle?: string;
+  notes?: string;
 }
 
-interface ContactDocument extends IContact, Document {
+export interface ContactDocument extends IContactEncrypted, Document {
+  _id?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 const schema: Schema = new Schema(
   {
+    secretKey: { type: String },
     firstName: { type: String },
     lastName: { type: String },
-    phoneNumber: [
-      {
-        type: {
-          type: String,
-          required: true,
-          enum: ["home", "work", "mobile"],
-        },
-        value: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
-    email: [
-      {
-        type: {
-          type: String,
-          required: true,
-          enum: ["home", "work", "mobile"],
-        },
-        value: {
-          type: String,
-          required: true,
-        },
-      },
-    ],
+    phoneNumber: { type: String },
+    email: { type: String },
     notes: {
       type: String,
     },
     birthday: {
       type: String,
     },
-    address: [
-      {
-        type: {
-          type: String,
-          enum: ["home", "work"],
-        },
-        value: {
-          type: String,
-        },
-      },
-    ],
+    address: { type: String },
     company: {
       type: String,
     },

@@ -6,4 +6,5 @@ export default {
   PORT: process.env.PORT,
   APP_NAME: process.env.APP_NAME,
   ENV: process.env.ENV,
+  INIT_VECTOR: process.env.INIT_VECTOR,
 };

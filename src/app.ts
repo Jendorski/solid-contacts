@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
 import helmet from "helmet";
 import config from "./app/config";
+import api from "./app/routes/index";
 import morganMiddleware from "./app/utils/morgan";
 import Utils from "./app/utils/response";
 
@@ -21,6 +22,8 @@ app.use(morganMiddleware);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use("/v1", api);
 
 // Basic ? Response
 app.get("/", (req: Request, res: Response) => {
