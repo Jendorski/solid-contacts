@@ -7,10 +7,9 @@ import Utils from "../../utils/response";
 
 const { internalResponse } = Utils;
 
-export const fetchAll = async (filter: Record<string, any>) => {
+export const fetchAll = async () => {
   try {
-    console.log({ filter });
-    const contacts: ContactDocument[] = await ContactRepo.findAll(filter);
+    const contacts: ContactDocument[] = await ContactRepo.findAll();
 
     const resp = await decryptContacts(contacts);
     if (resp.error)

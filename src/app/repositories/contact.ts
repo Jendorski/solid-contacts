@@ -1,7 +1,7 @@
 import contacts, { IContactEncrypted } from "../models/contacts";
 
 const ContactRepo = {
-  findAll: async (filter: Record<string, any>) => {
+  findAll: async (filter?: Record<string, any>) => {
     return await contacts
       .find({ ...filter })
       .sort({ createdAt: -1 })

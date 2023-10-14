@@ -34,7 +34,7 @@ export const ContactController = {
     return success(res, resp.data, resp.message, resp.statusCode);
   },
   findAll: async (req: Request, res: Response) => {
-    const resp = await fetchAll({ ...req.query });
+    const resp = await fetchAll();
     if (resp.error)
       return failed(res, resp.data, resp.message, resp.statusCode);
     return success(res, resp.data, resp.message, resp.statusCode);
