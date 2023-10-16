@@ -11,7 +11,6 @@
     "dev": "npx nodemon",
     "dev:m": "npx ts-node --project tsconfig.json -r tsconfig-paths/register ./src/index.ts",
     "build": "rimraf ./build && tsc",
-    "server": "node build/index.js",
     "start": "node build/index.js",
     "sd": "yarn build && yarn start"
   },
